@@ -1,0 +1,31 @@
+--- 
+- 
+  become: true
+  hosts: webservers
+  name: "installing and launching filebeat"
+  tasks: 
+    - 
+      command: "curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb"
+      name: "download filebeat deb"
+    - 
+      command: "dpkg -i filebeat-7.4.0-amd64.deb"
+      name: "install filebeat .deb"
+    - 
+      copy: 
+        dest: /etc/filebeat/filebeat.yml
+        src: /etc/ansible/files/filebeatconfig.yml
+      name: "drop in filebeat.yml"
+    - 
+      command: "filebeat modules enable system"
+      name: "enable and configure system module"
+    - 
+      command: "filebeat setup"
+      name: "setup filebeat"
+    - 
+      command: "service filebeat start"
+      name: "start filebeat service"
+    - 
+      name: "enable service filebeat on boot"
+      systemd: 
+        enabled: filebeat
+        name: TODO
