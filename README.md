@@ -1,4 +1,3 @@
 # Cyber21
 
-Hi Cyber-World
-I am Jenn, I cook, clean and IT. Thats my life for now 
+This is my Linux homework for my 2020-2021 Cybersecurity boot camp. 
